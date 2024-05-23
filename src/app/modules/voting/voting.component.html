@@ -1,0 +1,74 @@
+<section class="votings_container">
+  <div class="voting_container">
+    <div class="voting_header">
+      <div class="voting_header_part">
+        <a href="/" class="back_link"><img src="../../../assets/back.png" class="back_arrow" alt=""></a>
+        <p class="voting_number">No. {{ voting.id }}</p>
+        @if (voting.status=='closed') {
+        <p class="voting_closed">Closed</p>
+        <img src="../../../assets/lock.png" alt="" class="lock_icon">
+        }
+      </div>
+      <h2 class="voting_title">{{ voting.title }}</h2>
+      <div class="voting_info_container">
+        <p class="voting_creator">Author: {{ voting.creator.name }}</p>
+        <p class="voting_creator">Total votes: {{ voting.votesNum }}</p>
+      </div>
+    </div>
+    <div class="voting_body">
+      <p class="voting_description">{{ voting.description }}</p>
+      <form id="vote-form" (ngSubmit)="onVote()">
+        <div class="poll_container">
+          @for (candidate of candidates; track candidate) {
+          <p class="option_text">
+            <input type="radio" name="candidateId" [id]="'answer'+($index+1)" [value]="candidate.id"
+              [(ngModel)]="voteAnswer" [disabled]="vote" />
+            <label [for]="'answer'+($index+1)">
+              {{ candidate.name }}
+              @if (voting.status=='closed' || vote) {
+              - {{ candidate.votesNum }} votes
+              }
+            </label>
+          </p>
+          }
+        </div>
+        <div class="vote_button_container">
+          @if (voting.status=='active') {
+          <button type="submit" class="green_button" id="vote-button" [disabled]="vote">
+            @if(vote) {
+            You already voted
+            } @else {
+            Vote
+            }
+          </button>
+          }
+        </div>
+      </form>
+
+      <div class="bottom_buttons_container">
+        @if (vote && voting.status != 'closed') {
+        <form id="retract-vote-form" (ngSubmit)="retractVote()">
+          <button type="submit" class="transparent_button">Retract Vote</button>
+        </form>
+        }
+        @if (voting.userId == userId) {
+        <form id="delete-voting-form" (ngSubmit)="deleteVoting()">
+          <button class="transparent_button" type="submit">Delete Voting</button>
+        </form>
+        }
+        <a [href]="'/voting/'+voting.id" id="myLink"></a>
+        <img src="../../../assets/link.png" id="copyLinkButton" class="bottom_icon" (click)="copyLink()">
+
+        @if (voting.userId == userId && voting.status == 'active') {
+        <img src="../../../assets/lock.png" id="close-voting-button" class="bottom_icon" (click)="closeVoting()">
+        }
+        @if (voting.userId==userId && voting.status=='closed') {
+        <img src="../../../assets/unlock.png" id="open-voting-button" class="bottom_icon" (click)="openVoting()">
+        }
+        @if (voting.userId==userId) {
+        <a [href]="'/voting/'+voting.id+'/res'" class="bottom_link">Results</a>
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+<section class="votings_container">
+  <div class="voting_container">
+    <div class="voting_header">
+      <p class="voting_number">No. {{ voting.id }} Results
+      </p>
+      <h2 class="voting_title">{{ voting.title }}</h2>
+      <div class="voting_info_container">
+        <p class="voting_creator">Author: {{ voting.creator.name }}</p>
+        <p class="voting_creator">Total votes: {{ voting.votesNum }}</p>
+      </div>
+    </div>
+    <div class="voting_body">
+      <p class="voting_description">{{ voting.description }}</p>
+      <div class="poll_container">
+        @for (candidate of candidates; track candidate) {
+          <p class="option_text">
+            {{ candidate.name }} - {{ candidate.votesNum }} votes
+          </p>
+        }
+      </div>
+    </div>
+    <div class="bottom_buttons_container">
+      <a [href]="'/voting/' + voting.id + '/res'" id="myLink"></a>
+      <img src="../../../assets/link.png" id="copyLinkButton" class="bottom_icon" (click)="copyLink()">
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+<section class="votings_container">
+  <div class="voting_card">
+    <h1>Create a new poll</h1>
+    <form id="surveyForm" (ngSubmit)="createPoll()" class="newpoll_form">
+      <label for="surveyTitle">Question/label:</label>
+      <input type="text" id="surveyTitle" name="surveyTitle" required [(ngModel)]="surveyTitle" />
+
+      <label for="surveyDescription">Description:</label>
+      <textarea id="surveyDescription" name="surveyDescription" rows="3" [(ngModel)]="surveyDescription"></textarea>
+
+      <div id="options">
+        @for (inputValue of inputValues; let i = $index; track i;) {
+          <div class="option">
+            <label>Poll answer:</label>
+            <div class="option-input">
+              <input type="text" name="options" required [value]="inputValue" (input)="inputChange($event, i)" autocomplete="off" />
+              <button type="button" class="remove-option" (click)="removeOption(i)">
+                ✖
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <button type="button" class="green_button" (click)="addOption()">
+        Add answer
+      </button>
+      <button type="submit" class="green_button create_poll_button">Create poll</button>
+    </form>
+  </div>
+</section>

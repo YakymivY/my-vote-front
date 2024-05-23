@@ -1,0 +1,13 @@
+<header class="header">
+  <h1>
+    <a href="/">my<span class="distinct">V</span>ote</a>
+  </h1>
+  <div class="header__right">
+    <a href="/newpoll"><button class="green_button">Create vote</button></a>
+    @if (isLoggedIn()) {
+      <button type="submit" class="transparent_button" (click)="logout()">Log out</button>
+    } @else {
+      <a href="/auth/login"><button class="green_button">Log in</button></a>
+    }
+  </div>
+</header>

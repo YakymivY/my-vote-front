@@ -1,0 +1,16 @@
+<div class="auth_container">
+    <section class="auth_box">
+        <h1 class="auth_title">Login</h1>
+        <form id="login-form" class="auth_form" (ngSubmit)="onSubmit()">
+          <div>
+            <input type="login" name="login" id="login" required placeholder="Login" class="auth_input" autocomplete="off" [(ngModel)]="formLogin">
+          </div>
+          <div>
+            <input type="password" name="password" id="password" required placeholder="Password" class="auth_input" autocomplete="off" [(ngModel)]="formPassword">
+          </div>
+          <button type="submit" class="green_button" style="margin: 0;">Login</button>
+        </form>
+        <p class="auth_reminder">Don't have an account? <a href="/auth/register" class="green_link">Register here</a>
+        </p>
+    </section>
+</div>
