@@ -16,12 +16,12 @@ export class VotingResComponent implements OnInit {
   voting: any = {};
   candidates: any = {};
 
-  constructor (private http: HttpClient, private route: ActivatedRoute, private service: SharedService) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute, private service: SharedService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     try {
-      this.http.get('https://my-vote-6-5.onrender.com/voting/' + this.id + '/res').subscribe(
+      this.http.get('https://my-vote-6-6.onrender.com/voting/' + this.id + '/res').subscribe(
         (response: any) => {
           this.candidates = response.candidates;
           this.voting = response.voting;

@@ -20,18 +20,18 @@ export class LoginComponent {
 
   onSubmit(): void {
     try {
-      this.http.post('https://my-vote-6-5.onrender.com/auth/login', { login: this.formLogin, password: this.formPassword }).subscribe(
+      this.http.post('https://my-vote-6-6.onrender.com/auth/login', { login: this.formLogin, password: this.formPassword }).subscribe(
         (response: any) => {
           sessionStorage.setItem('token', response.token);
-          setTimeout(() => {this.router.navigate([response.redirect])});
+          setTimeout(() => { this.router.navigate([response.redirect]) });
         },
         (error) => {
           this.service.triggerShowAlert('Something went wrong');
         }
       );
-      } catch (error: any) {
-        this.service.triggerShowAlert(error.message);
-      }
+    } catch (error: any) {
+      this.service.triggerShowAlert(error.message);
+    }
   }
 
 }

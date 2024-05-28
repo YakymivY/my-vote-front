@@ -37,7 +37,7 @@ export class NewpollComponent {
     const options = this.inputValues;
 
     try {
-      this.http.post('https://my-vote-6-3.onrender.com/newpoll/add-voting', { surveyTitle, surveyDescription, options }).subscribe(
+      this.http.post('https://my-vote-6-6.onrender.com/newpoll/add-voting', { surveyTitle, surveyDescription, options }).subscribe(
         (response: any) => {
           this.router.navigate([response.redirect]);
         },

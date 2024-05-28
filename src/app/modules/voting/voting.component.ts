@@ -27,7 +27,7 @@ export class VotingComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     try {
-      this.http.get('https://my-vote-6-5.onrender.com/voting/' + this.id).subscribe(
+      this.http.get('https://my-vote-6-6.onrender.com/voting/' + this.id).subscribe(
         (response: any) => {
           this.candidates = response.candidates;
           this.vote = response.vote;
@@ -49,7 +49,7 @@ export class VotingComponent implements OnInit {
       return;
     }
     try {
-      this.http.post('https://my-vote-6-5.onrender.com/voting/' + this.id + '/vote', { candidateId: this.voteAnswer }).subscribe(
+      this.http.post('https://my-vote-6-6.onrender.com/voting/' + this.id + '/vote', { candidateId: this.voteAnswer }).subscribe(
         (response: any) => {
           this.service.triggerShowAlert('Voted successfully');
           setTimeout(() => {
@@ -60,14 +60,14 @@ export class VotingComponent implements OnInit {
           this.service.triggerShowAlert('Error: Failed to cast vote');
         }
       );
-      } catch (error: any) {
-        this.service.triggerShowAlert(error.message);
-      }
+    } catch (error: any) {
+      this.service.triggerShowAlert(error.message);
+    }
   }
 
   retractVote(): void {
     try {
-      this.http.post('https://my-vote-6-5.onrender.com/voting/' + this.id + '/retract', {}).subscribe(
+      this.http.post('https://my-vote-6-6.onrender.com/voting/' + this.id + '/retract', {}).subscribe(
         (response: any) => {
           this.service.triggerShowAlert('Vote has been retracted');
           setTimeout(() => {
@@ -85,7 +85,7 @@ export class VotingComponent implements OnInit {
 
   deleteVoting(): void {
     try {
-      this.http.post('https://my-vote-6-5.onrender.com/voting/' + this.id + '/delete', {}).subscribe(
+      this.http.delete('https://my-vote-6-6.onrender.com/voting/' + this.id).subscribe(
         (response: any) => {
           this.service.triggerShowAlert('This vote is deleted');
           setTimeout(() => {
@@ -96,14 +96,14 @@ export class VotingComponent implements OnInit {
           this.service.triggerShowAlert('Something went wrong');
         }
       );
-      } catch (error: any) {
-        this.service.triggerShowAlert(error.message);
-      }
+    } catch (error: any) {
+      this.service.triggerShowAlert(error.message);
+    }
   }
 
   closeVoting(): void {
     try {
-      this.http.post('https://my-vote-6-5.onrender.com/voting/' + this.id + '/close', {}).subscribe(
+      this.http.put('https://my-vote-6-6.onrender.com/voting/' + this.id + '/close', {}).subscribe(
         (response: any) => {
           this.service.triggerShowAlert('This voting is now closed');
           setTimeout(() => {
@@ -114,14 +114,14 @@ export class VotingComponent implements OnInit {
           this.service.triggerShowAlert('Something went wrong');
         }
       );
-      } catch (error: any) {
-        this.service.triggerShowAlert(error.message);
-      }
+    } catch (error: any) {
+      this.service.triggerShowAlert(error.message);
+    }
   }
 
   openVoting(): void {
     try {
-      this.http.post('https://my-vote-6-5.onrender.com/voting/' + this.id + '/open', {}).subscribe(
+      this.http.put('https://my-vote-6-6.onrender.com/voting/' + this.id + '/open', {}).subscribe(
         (response: any) => {
           this.service.triggerShowAlert('This voting is now opened');
           setTimeout(() => {

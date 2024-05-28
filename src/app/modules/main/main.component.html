@@ -1,5 +1,18 @@
 <section class="votings_container">
     <h1 class="votings_title">Your opinion matters, Democracy is everything<span class="distinct">!</span></h1>
+    <div class="status-container">
+      <div class="status-wrapper">
+        <label for="status_active" class="status">
+          <input type="checkbox" id="status_active" [(ngModel)]="statusActive">
+          Active
+        </label>
+        <label for="status_closed" class="status">
+          <input type="checkbox" id="status_closed" [(ngModel)]="statusClosed">
+          Closed
+        </label>
+        <button class="green_button" style="margin-left: 10px;" (click)="filterVotings()">Filter</button>
+      </div>
+    </div>
         @for (voting of votings; track voting) {
           <div class="voting_card">
             <div class="voting_card_header">
@@ -21,4 +34,13 @@
             </div>
           </div>
         }
+    <div class="pagination-container">
+      <div class="pagination__button" (click)="prevPage()">
+        <img src="../../../assets/left-arrow.png" alt="">
+      </div>
+      <div class="pagination__button pagination__button-center">{{ currentPage }}</div>
+      <div class="pagination__button" (click)="nextPage()">
+        <img src="../../../assets/right-arrow.png" alt="">
+      </div>
+    </div>
   </section>
